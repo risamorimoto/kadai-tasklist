@@ -6,18 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Message;    // add
+use App\Task;    // add
 
 class TasksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        $tasks = Message::all();
+        $tasks = Task::all();
 
         return view('tasks.index', [
             'tasks' => $tasks,
@@ -45,7 +41,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
 
-        return view('task.show', [
+        return view('tasks.show', [
             'task' => $task,
         ]);
     }
@@ -54,12 +50,12 @@ class TasksController extends Controller
         $task = Task::find($id);
 
         return view('tasks.edit', [
-            'task' => $message,
+            'task' => $task,
         ]);
     }
     public function update(Request $request, $id)
     {
-        $task = Message::find($id);
+        $task = Task::find($id);
         $task->content = $request->content;
         $task->save();
 
